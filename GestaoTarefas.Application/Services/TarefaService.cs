@@ -13,12 +13,12 @@ public class TarefaService
 
   public async Task<Tarefa?> GetTarefaByIdAsync(int id)
   {
-    return null;
+    return await _tarefaRepository.GetByIdAsync(id);
   }
 
   public async Task<IEnumerable<Tarefa>> GetAllTarefasAsync()
   {
-    return null;
+    return await _tarefaRepository.GetAllAsync();
   }
 
   public async Task<int> CreateTarefaAsync(CreateTarefaDto createTarefaDto)
@@ -33,26 +33,26 @@ public class TarefaService
       DataAlteracao = DateTime.UtcNow
     };
 
-    return default;
+    return await _tarefaRepository.AddAsync(tarefa);
   }
 
   public async Task UpdateTarefaAsync(UpdateTarefaDto updateTarefaDto)
   {
-    // var tarefa = new Tarefa
-    // {
-    //   Id = updateTarefaDto.Id,
-    //   Titulo = updateTarefaDto.Titulo,
-    //   Descricao = updateTarefaDto.Descricao,
-    //   DataVencimento = updateTarefaDto.DataVencimento,
-    //   Status = updateTarefaDto.Status,
-    //   DataAlteracao = DateTime.UtcNow
-    // };
+    var tarefa = new Tarefa
+    {
+      Id = updateTarefaDto.Id,
+      Titulo = updateTarefaDto.Titulo,
+      Descricao = updateTarefaDto.Descricao,
+      DataVencimento = updateTarefaDto.DataVencimento,
+      Status = updateTarefaDto.Status,
+      DataAlteracao = DateTime.UtcNow
+    };
 
-    // await _tarefaRepository.UpdateAsync(tarefa);
+    await _tarefaRepository.UpdateAsync(tarefa);
   }
 
   public async Task DeleteTarefaAsync(int id)
   {
-    // await _tarefaRepository.DeleteAsync(id);
+    await _tarefaRepository.DeleteAsync(id);
   }
 }
