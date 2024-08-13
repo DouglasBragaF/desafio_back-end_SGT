@@ -2,7 +2,7 @@ using GestaoTarefas.Application;
 using GestaoTarefas.Domain.Entities;
 using GestaoTarefas.Domain.Interfaces;
 
-public class TarefaService
+public class TarefaService : ITarefaService
 {
   private readonly ITarefaRepository _tarefaRepository;
 

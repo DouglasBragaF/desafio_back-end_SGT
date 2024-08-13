@@ -13,6 +13,7 @@ namespace GestaoTarefas.Infrastructure.Repositories
     public TarefaRepository(string connectionString)
     {
       _connectionString = connectionString;
+      new DatabaseInitializer(connectionString).InitializeAsync().Wait(); // Inicializa o banco de dados
     }
 
     private IDbConnection CreateConnection()
