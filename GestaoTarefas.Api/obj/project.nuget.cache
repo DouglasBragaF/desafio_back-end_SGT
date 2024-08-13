@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "WWsAC0T7EI5qDNC2g2G/zE2XUOgLds/EnJEjRjPSi6QG0tNilf5cIutVXbM/MbaGuUiT17eMyTw3jGCEr+1kdg==",
+  "dgSpecHash": "G26hnl1756sAYaqAjJhEDMfnSX3ek4DJEkFVNys4FLyqKmSZKNJC+iMcq4U0o3dgtW2Bq11ww1Kn/vVj8Mx8pg==",
   "success": true,
   "projectFilePath": "/home/douglasf/Área de Trabalho/processo-seletivo-t2m/desafio_back-end_SGT/GestaoTarefas.Api/GestaoTarefas.Api.csproj",
   "expectedPackageFiles": [
+    "/home/douglasf/.nuget/packages/dapper/2.1.35/dapper.2.1.35.nupkg.sha512",
     "/home/douglasf/.nuget/packages/microsoft.aspnetcore.openapi/8.0.7/microsoft.aspnetcore.openapi.8.0.7.nupkg.sha512",
     "/home/douglasf/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
     "/home/douglasf/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/npgsql/8.0.3/npgsql.8.0.3.nupkg.sha512",
     "/home/douglasf/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "/home/douglasf/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "/home/douglasf/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

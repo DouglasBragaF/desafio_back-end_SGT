@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "R8x3RTBxySCvPsGoAL1/JfZCDPIUELqrsQ8eK1WYFR3mz9IMeKuM9ZqNjHbkXL/csXWXIYFrVHrgx6Kde23dXA==",
+  "dgSpecHash": "2/pf5/296I68lW9Feig/aTVy7kLqn4Ne5G9lXF0kKtjAWY1YgdQqlY02dsl4eULRaTIaLxTk6ERU8hT1rxR1yQ==",
   "success": true,
   "projectFilePath": "/home/douglasf/Área de Trabalho/processo-seletivo-t2m/desafio_back-end_SGT/GestaoTarefas.Application/GestaoTarefas.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/douglasf/.nuget/packages/dapper/2.1.35/dapper.2.1.35.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/npgsql/8.0.3/npgsql.8.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
