@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
     <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="Moq.Dapper" Version="1.0.7" />
@@ -27,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GestaoTarefas.Application\GestaoTarefas.Application.csproj" />
     <ProjectReference Include="..\GestaoTarefas.Infrastructure\GestaoTarefas.Infrastructure.csproj" />
+    <ProjectReference Include="..\GestaoTarefas.Api\GestaoTarefas.Api.csproj" />
   </ItemGroup>
 
 </Project>
