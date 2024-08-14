@@ -15,6 +15,13 @@ namespace GestaoTarefas.Api.Controllers
       _tarefaService = tarefaService;
     }
 
+    [HttpOptions]
+    public IActionResult Options()
+    {
+      Response.Headers.Append("Allow", "GET, POST, OPTIONS");
+      return Ok();
+    }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetTarefa(int id)
     {

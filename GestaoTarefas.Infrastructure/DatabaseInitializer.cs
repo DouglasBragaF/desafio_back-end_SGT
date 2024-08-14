@@ -58,7 +58,7 @@ namespace GestaoTarefas.Infrastructure
         {
           // Cria a tabela se não existir
           var createTableQuery = @"
-              CREATE TABLE public.Tarefas
+              CREATE TABLE IF NOT EXISTS public.Tarefas
               (
                   Id SERIAL PRIMARY KEY,
                   Titulo VARCHAR(255) NOT NULL,

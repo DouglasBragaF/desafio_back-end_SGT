@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "G26hnl1756sAYaqAjJhEDMfnSX3ek4DJEkFVNys4FLyqKmSZKNJC+iMcq4U0o3dgtW2Bq11ww1Kn/vVj8Mx8pg==",
+  "dgSpecHash": "J9fL91/xv2wB2zC4yhDlxzwwio3eblLK8sT5vgIDg/OcEVz/uluHdgsTSmtBFe6dcZeenA7p7yKNbBL5rRsoXQ==",
   "success": true,
   "projectFilePath": "/home/douglasf/Área de Trabalho/processo-seletivo-t2m/desafio_back-end_SGT/GestaoTarefas.Api/GestaoTarefas.Api.csproj",
   "expectedPackageFiles": [
