@@ -1,5 +1,6 @@
 using GestaoTarefas.Domain.Interfaces;
 using GestaoTarefas.Infrastructure.Repositories;
+using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,14 +9,27 @@ builder.Services.AddControllers();
 // Configuração da connection string
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Registro de dependências
+// Registro de dependências do TarefaService e repositório
 builder.Services.AddScoped<ITarefaService, TarefaService>();
-
-if (!string.IsNullOrEmpty(connectionString))
+builder.Services.AddScoped<ITarefaRepository>(provider =>
 {
-    builder.Services.AddScoped<ITarefaRepository>(provider =>
-        new TarefaRepository(connectionString));
-}
+    return new TarefaRepository(connectionString ?? throw new ArgumentNullException("ConnectionString"));
+});
+
+// Configuração do MassTransit com RabbitMQ
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host("localhost", "/", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+
+        cfg.ConfigureEndpoints(context);
+    });
+});
 
 // Configuração do Swagger
 builder.Services.AddEndpointsApiExplorer();

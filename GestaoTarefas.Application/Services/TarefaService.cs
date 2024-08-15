@@ -1,13 +1,18 @@
+using MassTransit;
 using GestaoTarefas.Application;
 using GestaoTarefas.Domain.Entities;
 using GestaoTarefas.Domain.Interfaces;
+using GestaoTarefas.Application.Events;
 
 public class TarefaService : ITarefaService
 {
   private readonly ITarefaRepository _tarefaRepository;
 
-  public TarefaService(ITarefaRepository tarefaRepository)
+  private readonly IBus _bus;
+
+  public TarefaService(IBus bus, ITarefaRepository tarefaRepository)
   {
+    _bus = bus;
     _tarefaRepository = tarefaRepository;
   }
 
@@ -23,36 +28,72 @@ public class TarefaService : ITarefaService
 
   public async Task<int> CreateTarefaAsync(CreateTarefaDto createTarefaDto)
   {
-    var tarefa = new Tarefa
+    // Converte o DTO para uma entidade Tarefa
+    var tarefa = ConvertToEntity(createTarefaDto);
+    var result = await _tarefaRepository.AddAsync(tarefa);
+    await _bus.Publish(new TarefaCreatedEvent
     {
-      Titulo = createTarefaDto.Titulo,
-      Descricao = createTarefaDto.Descricao,
-      DataVencimento = createTarefaDto.DataVencimento,
-      Status = createTarefaDto.Status,
-      DataCriacao = DateTime.UtcNow,
-      DataAlteracao = DateTime.UtcNow
-    };
+      TarefaId = result,
+      Tarefa = createTarefaDto
 
-    return await _tarefaRepository.AddAsync(tarefa);
+    });
+
+    // Persiste a entidade no repositório
+    return result;
   }
 
   public async Task UpdateTarefaAsync(UpdateTarefaDto updateTarefaDto)
   {
-    var tarefa = new Tarefa
+    // Recupera a tarefa existente
+    var tarefaExistente = await _tarefaRepository.GetByIdAsync(updateTarefaDto.Id);
+    if (tarefaExistente == null)
     {
-      Id = updateTarefaDto.Id,
-      Titulo = updateTarefaDto.Titulo,
-      Descricao = updateTarefaDto.Descricao,
-      DataVencimento = updateTarefaDto.DataVencimento,
-      Status = updateTarefaDto.Status,
-      DataAlteracao = DateTime.UtcNow
-    };
+      throw new Exception("Tarefa não encontrada.");
+    }
 
-    await _tarefaRepository.UpdateAsync(tarefa);
+    // Atualiza a entidade Tarefa com os dados do DTO
+    ConvertToEntity(updateTarefaDto, tarefaExistente);
+
+    // Atualiza a entidade no repositório
+    await _tarefaRepository.UpdateAsync(tarefaExistente);
   }
 
   public async Task DeleteTarefaAsync(int id)
   {
+    var result = await _tarefaRepository.GetByIdAsync(id);
+    if (result == null)
+    {
+      throw new Exception("Tarefa não encontrada.");
+    }
+
+    await _bus.Publish(new TarefaDeletedEvent
+    {
+      TarefaId = id,
+      DataExclusao = DateTime.UtcNow
+    });
+    // Remove a entidade do repositório
     await _tarefaRepository.DeleteAsync(id);
+  }
+
+  private Tarefa ConvertToEntity(CreateTarefaDto dto)
+  {
+    return new Tarefa
+    {
+      Titulo = dto.Titulo,
+      Descricao = dto.Descricao,
+      DataVencimento = dto.DataVencimento,
+      Status = dto.Status,
+      DataCriacao = DateTime.UtcNow,
+      DataAlteracao = DateTime.UtcNow
+    };
+  }
+
+  private void ConvertToEntity(UpdateTarefaDto dto, Tarefa tarefaExistente)
+  {
+    tarefaExistente.Titulo = dto.Titulo;
+    tarefaExistente.Descricao = dto.Descricao;
+    tarefaExistente.DataVencimento = dto.DataVencimento;
+    tarefaExistente.Status = dto.Status;
+    tarefaExistente.DataAlteracao = DateTime.UtcNow;
   }
 }

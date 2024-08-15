@@ -1,13 +1,29 @@
 {
   "version": 2,
-  "dgSpecHash": "skB8j7A7j1lmQckty/9CcYY8gjn7NZ+yNxD6YJ5XokQ4yPfIEpmNEKVNzER3DNJltYzxqK4f0aUJrDEHSjNxcw==",
+  "dgSpecHash": "Y6kl/ZVrdWPWqoUsxTl5wsmekAAlf13jUrwby0hOdF8MS8FSlGyMLd9aSSYNKN5KcjeXcmU9J1VYc7RASqcPYQ==",
   "success": true,
   "projectFilePath": "/home/douglasf/Área de Trabalho/processo-seletivo-t2m/desafio_back-end_SGT/GestaoTarefas.Application/GestaoTarefas.Application.csproj",
   "expectedPackageFiles": [
     "/home/douglasf/.nuget/packages/dapper/2.1.35/dapper.2.1.35.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/masstransit/8.2.4/masstransit.8.2.4.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/masstransit.abstractions/8.2.4/masstransit.abstractions.8.2.4.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/masstransit.extensions.dependencyinjection/7.3.1/masstransit.extensions.dependencyinjection.7.3.1.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/masstransit.rabbitmq/8.2.4/masstransit.rabbitmq.8.2.4.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
     "/home/douglasf/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/microsoft.extensions.diagnostics.abstractions/8.0.0/microsoft.extensions.diagnostics.abstractions.8.0.0.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/microsoft.extensions.diagnostics.healthchecks/8.0.0/microsoft.extensions.diagnostics.healthchecks.8.0.0.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/microsoft.extensions.diagnostics.healthchecks.abstractions/8.0.0/microsoft.extensions.diagnostics.healthchecks.abstractions.8.0.0.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/microsoft.extensions.fileproviders.abstractions/8.0.0/microsoft.extensions.fileproviders.abstractions.8.0.0.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/microsoft.extensions.hosting.abstractions/8.0.0/microsoft.extensions.hosting.abstractions.8.0.0.nupkg.sha512",
     "/home/douglasf/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
-    "/home/douglasf/.nuget/packages/npgsql/8.0.3/npgsql.8.0.3.nupkg.sha512"
+    "/home/douglasf/.nuget/packages/microsoft.extensions.options/8.0.0/microsoft.extensions.options.8.0.0.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/npgsql/8.0.3/npgsql.8.0.3.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/rabbitmq.client/6.8.1/rabbitmq.client.6.8.1.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/system.diagnostics.diagnosticsource/8.0.0/system.diagnostics.diagnosticsource.8.0.0.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/system.memory/4.5.5/system.memory.4.5.5.nupkg.sha512",
+    "/home/douglasf/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }
