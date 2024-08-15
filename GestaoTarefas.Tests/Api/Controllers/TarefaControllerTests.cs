@@ -35,7 +35,7 @@ public class TarefaControllerTests
     // Assert
     var actionResult = Assert.IsType<CreatedAtActionResult>(result);
     Assert.Equal("GetTarefa", actionResult.ActionName);
-    Assert.Equal(1, actionResult.RouteValues["id"]);
+    Assert.Equal(1, actionResult.RouteValues?["id"]);
   }
 
   [Fact]

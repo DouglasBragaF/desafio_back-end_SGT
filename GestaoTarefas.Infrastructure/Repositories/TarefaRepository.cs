@@ -13,7 +13,8 @@ namespace GestaoTarefas.Infrastructure.Repositories
     public TarefaRepository(string connectionString)
     {
       _connectionString = connectionString;
-      new DatabaseInitializer(connectionString).InitializeAsync().Wait(); // Inicializa o banco de dados
+      // Inicializa o banco de dados
+      new DatabaseInitializer(connectionString).InitializeAsync().Wait();
     }
 
     private IDbConnection CreateConnection()
@@ -43,7 +44,7 @@ namespace GestaoTarefas.Infrastructure.Repositories
     {
       using (var connection = CreateConnection())
       {
-        tarefa.DataCriacao = DateTime.UtcNow; // Define a data de criação
+        tarefa.DataCriacao = DateTime.UtcNow;
 
         var sql = @"
                     INSERT INTO Tarefas (Titulo, Descricao, DataCriacao, DataVencimento, Status)
@@ -59,7 +60,7 @@ namespace GestaoTarefas.Infrastructure.Repositories
     {
       using (var connection = CreateConnection())
       {
-        tarefa.DataAlteracao = DateTime.UtcNow; // Define a data de alteração
+        tarefa.DataAlteracao = DateTime.UtcNow;
 
         var sql = @"
                     UPDATE Tarefas

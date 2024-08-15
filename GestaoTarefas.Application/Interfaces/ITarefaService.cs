@@ -1,7 +1,5 @@
 using GestaoTarefas.Application;
 using GestaoTarefas.Domain.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace GestaoTarefas.Domain.Interfaces
 {

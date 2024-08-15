@@ -26,10 +26,10 @@ namespace GestaoTarefas.Application
       {
         Titulo = dto.Titulo,
         Descricao = dto.Descricao,
-        // Garantindo que DataVencimento seja considerada apenas até o dia
+        // DataVencimento considerada apenas até o dia
         DataVencimento = dto.DataVencimento.HasValue ? dto.DataVencimento.Value.Date : (DateTime?)null,
         Status = dto.Status,
-        // Definindo DataCriacao como apenas a data, sem horas e minutos
+        // DataCriacao como apenas a data, sem horas e minutos
         DataCriacao = DateTime.UtcNow.Date
       };
     }

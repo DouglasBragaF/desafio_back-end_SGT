@@ -18,6 +18,10 @@ namespace GestaoTarefas.Infrastructure
     private string GetDatabaseNameFromConnectionString(string connectionString)
     {
       var builder = new NpgsqlConnectionStringBuilder(connectionString);
+      if (string.IsNullOrEmpty(builder.Database))
+      {
+        throw new ArgumentException("Database name not found in connection string");
+      }
       return builder.Database;
     }
 
@@ -25,7 +29,7 @@ namespace GestaoTarefas.Infrastructure
     {
       var builder = new NpgsqlConnectionStringBuilder(_connectionString)
       {
-        Database = "postgres" // Usamos o banco de dados padrão do PostgreSQL para as operações administrativas
+        Database = "postgres"
       };
       return builder.ConnectionString;
     }

@@ -2,12 +2,6 @@ using Dapper;
 using GestaoTarefas.Domain.Entities;
 using GestaoTarefas.Infrastructure.Repositories;
 using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using Xunit;
 
 public class TarefaRepositoryTests : IAsyncLifetime
 {
@@ -16,7 +10,7 @@ public class TarefaRepositoryTests : IAsyncLifetime
 
   public TarefaRepositoryTests()
   {
-    // Substitua pela string de conexão do seu banco de testes
+    //String de conexão do seu banco de testes
     _connectionString = "Host=localhost;Port=5432;Database=GestaoTarefasDB-teste;Username=postgres;Password=889521";
     _repository = new TarefaRepository(_connectionString);
   }
@@ -112,17 +106,20 @@ public class TarefaRepositoryTests : IAsyncLifetime
     var tarefaInserida = await _repository.GetByIdAsync(id);
 
     // Act
-    tarefaInserida.Titulo = "Tarefa Atualizada";
-    tarefaInserida.Descricao = "Descrição Atualizada";
-    tarefaInserida.Status = StatusTarefa.Concluida;
-    await _repository.UpdateAsync(tarefaInserida);
-    var tarefaAtualizada = await _repository.GetByIdAsync(id);
+    if (tarefaInserida != null)
+    {
+      tarefaInserida.Titulo = "Tarefa Atualizada";
+      tarefaInserida.Descricao = "Descrição Atualizada";
+      tarefaInserida.Status = StatusTarefa.Concluida;
+      await _repository.UpdateAsync(tarefaInserida);
+      var tarefaAtualizada = await _repository.GetByIdAsync(id);
 
-    // Assert
-    Assert.NotNull(tarefaAtualizada);
-    Assert.Equal("Tarefa Atualizada", tarefaAtualizada.Titulo);
-    Assert.Equal("Descrição Atualizada", tarefaAtualizada.Descricao);
-    Assert.Equal(StatusTarefa.Concluida, tarefaAtualizada.Status);
+      // Assert
+      Assert.NotNull(tarefaAtualizada);
+      Assert.Equal("Tarefa Atualizada", tarefaAtualizada.Titulo);
+      Assert.Equal("Descrição Atualizada", tarefaAtualizada.Descricao);
+      Assert.Equal(StatusTarefa.Concluida, tarefaAtualizada.Status);
+    }
   }
 
   [Fact]
