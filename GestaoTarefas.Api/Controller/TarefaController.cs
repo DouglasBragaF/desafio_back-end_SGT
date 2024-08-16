@@ -1,10 +1,12 @@
 using GestaoTarefas.Application;
 using GestaoTarefas.Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GestaoTarefas.Api.Controllers
 {
   [ApiController]
+  // [Authorize]
   [Route("api/[controller]")]
   public class TarefaController : ControllerBase
   {
