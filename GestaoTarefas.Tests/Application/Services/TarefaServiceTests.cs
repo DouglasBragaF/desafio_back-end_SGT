@@ -1,4 +1,5 @@
 using GestaoTarefas.Application;
+using GestaoTarefas.Application.Events;
 using GestaoTarefas.Domain.Entities;
 using GestaoTarefas.Domain.Interfaces;
 using MassTransit;
@@ -96,6 +97,14 @@ public class TarefaServiceTests
 
     // Assert
     Assert.Equal(1, result);
+
+    _mockBus.Verify(bus => bus.Publish(It.Is<TarefaCreatedEvent>(e =>
+            e.TarefaId == 1 &&
+            e.Tarefa.Titulo == createTarefaDto.Titulo &&
+            e.Tarefa.Descricao == createTarefaDto.Descricao &&
+            e.Tarefa.DataVencimento == createTarefaDto.DataVencimento &&
+            e.Tarefa.Status == createTarefaDto.Status
+        ), default), Times.Once);
   }
 
   [Fact]
@@ -153,5 +162,10 @@ public class TarefaServiceTests
 
     // Assert
     _mockRepository.Verify(repo => repo.DeleteAsync(tarefaId), Times.Once);
+
+    _mockBus.Verify(bus => bus.Publish(It.Is<TarefaDeletedEvent>(e =>
+        e.TarefaId == tarefaId &&
+        e.DataExclusao.Date == DateTime.UtcNow.Date
+    ), default), Times.Once);
   }
 }

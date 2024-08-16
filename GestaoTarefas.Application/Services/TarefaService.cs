@@ -31,7 +31,8 @@ public class TarefaService : ITarefaService
     // Converte o DTO para uma entidade Tarefa
     var tarefa = ConvertToEntity(createTarefaDto);
     var result = await _tarefaRepository.AddAsync(tarefa);
-    await _bus.Publish(new TarefaCreatedEvent
+
+    await PublishEventAsync(new TarefaCreatedEvent
     {
       TarefaId = result,
       Tarefa = createTarefaDto
@@ -66,7 +67,7 @@ public class TarefaService : ITarefaService
       throw new Exception("Tarefa não encontrada.");
     }
 
-    await _bus.Publish(new TarefaDeletedEvent
+    await PublishEventAsync(new TarefaDeletedEvent
     {
       TarefaId = id,
       DataExclusao = DateTime.UtcNow
@@ -95,5 +96,17 @@ public class TarefaService : ITarefaService
     tarefaExistente.DataVencimento = dto.DataVencimento;
     tarefaExistente.Status = dto.Status;
     tarefaExistente.DataAlteracao = DateTime.UtcNow;
+  }
+
+  private async Task PublishEventAsync<T>(T evento) where T : class
+  {
+    try
+    {
+      await _bus.Publish(evento);
+    }
+    catch (Exception ex)
+    {
+      throw new Exception("Erro ao publicar o evento.", ex);
+    }
   }
 }
