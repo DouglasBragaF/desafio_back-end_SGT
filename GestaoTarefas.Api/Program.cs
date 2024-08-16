@@ -1,7 +1,7 @@
 using GestaoTarefas.Domain.Interfaces;
 using GestaoTarefas.Infrastructure.Repositories;
-using GestaoTarefas.Application.Messaging;
-using MassTransit;
+// using GestaoTarefas.Application.Messaging;
+// using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using GestaoTarefas.Application.Services;
 
@@ -22,39 +22,39 @@ builder.Services.AddScoped<ITarefaRepository>(provider =>
     return new TarefaRepository(connectionString ?? throw new ArgumentNullException("ConnectionString"));
 });
 
-// Configuração do MassTransit com RabbitMQ
-builder.Services.AddMassTransit(x =>
-{
-    x.AddConsumer<TarefaCreatedEventConsumer>();
-    x.AddConsumer<TarefaUpdatedEventConsumer>();
-    x.AddConsumer<TarefaDeletedEventConsumer>();
+// // Configuração do MassTransit com RabbitMQ
+// builder.Services.AddMassTransit(x =>
+// {
+//     x.AddConsumer<TarefaCreatedEventConsumer>();
+//     x.AddConsumer<TarefaUpdatedEventConsumer>();
+//     x.AddConsumer<TarefaDeletedEventConsumer>();
 
-    x.UsingRabbitMq((context, cfg) =>
-    {
-        cfg.Host("localhost", "/", h =>
-        {
-            h.Username("guest");
-            h.Password("guest");
-        });
+//     x.UsingRabbitMq((context, cfg) =>
+//     {
+//         cfg.Host("localhost", "/", h =>
+//         {
+//             h.Username("guest");
+//             h.Password("guest");
+//         });
 
-        cfg.ReceiveEndpoint("tarefa-created", e =>
-        {
-            e.ConfigureConsumer<TarefaCreatedEventConsumer>(context);
-        });
+//         cfg.ReceiveEndpoint("tarefa-created", e =>
+//         {
+//             e.ConfigureConsumer<TarefaCreatedEventConsumer>(context);
+//         });
 
-        cfg.ReceiveEndpoint("tarefa-updated", e =>
-        {
-            e.ConfigureConsumer<TarefaUpdatedEventConsumer>(context);
-        });
+//         cfg.ReceiveEndpoint("tarefa-updated", e =>
+//         {
+//             e.ConfigureConsumer<TarefaUpdatedEventConsumer>(context);
+//         });
 
-        cfg.ReceiveEndpoint("tarefa-deleted", e =>
-        {
-            e.ConfigureConsumer<TarefaDeletedEventConsumer>(context);
-        });
+//         cfg.ReceiveEndpoint("tarefa-deleted", e =>
+//         {
+//             e.ConfigureConsumer<TarefaDeletedEventConsumer>(context);
+//         });
 
-        cfg.ConfigureEndpoints(context);
-    });
-});
+//         cfg.ConfigureEndpoints(context);
+//     });
+// });
 // Configuração da chave, issuer e audience
 var secretKey = "your-very-secure-secret-key-32bytes-long";
 var issuer = "dev_issuer";
@@ -130,6 +130,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapHub<TarefasHub>("/tarefasHub");
+// app.MapHub<TarefasHub>("/tarefasHub");
 
 app.Run();

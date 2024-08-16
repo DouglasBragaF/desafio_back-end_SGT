@@ -8,11 +8,11 @@ public class TarefaService : ITarefaService
 {
   private readonly ITarefaRepository _tarefaRepository;
 
-  private readonly IBus _bus;
+  // private readonly IBus _bus;
 
-  public TarefaService(IBus bus, ITarefaRepository tarefaRepository)
+  public TarefaService(ITarefaRepository tarefaRepository)
   {
-    _bus = bus;
+    // _bus = bus;
     _tarefaRepository = tarefaRepository;
   }
 
@@ -32,12 +32,12 @@ public class TarefaService : ITarefaService
     var tarefa = ConvertToEntity(createTarefaDto);
     var result = await _tarefaRepository.AddAsync(tarefa);
 
-    await PublishEventAsync(new TarefaCreatedEvent
-    {
-      TarefaId = result,
-      Tarefa = createTarefaDto
+    // await PublishEventAsync(new TarefaCreatedEvent
+    // {
+    //   TarefaId = result,
+    //   Tarefa = createTarefaDto
 
-    });
+    // });
 
     // Persiste a entidade no repositório
     return result;
@@ -67,11 +67,11 @@ public class TarefaService : ITarefaService
       throw new Exception("Tarefa não encontrada.");
     }
 
-    await PublishEventAsync(new TarefaDeletedEvent
-    {
-      TarefaId = id,
-      DataExclusao = DateTime.UtcNow
-    });
+    // await PublishEventAsync(new TarefaDeletedEvent
+    // {
+    //   TarefaId = id,
+    //   DataExclusao = DateTime.UtcNow
+    // });
     // Remove a entidade do repositório
     await _tarefaRepository.DeleteAsync(id);
   }
@@ -98,15 +98,15 @@ public class TarefaService : ITarefaService
     tarefaExistente.DataAlteracao = DateTime.UtcNow;
   }
 
-  private async Task PublishEventAsync<T>(T evento) where T : class
-  {
-    try
-    {
-      await _bus.Publish(evento);
-    }
-    catch (Exception ex)
-    {
-      throw new Exception("Erro ao publicar o evento.", ex);
-    }
-  }
+  // private async Task PublishEventAsync<T>(T evento) where T : class
+  // {
+  //   try
+  //   {
+  //     await _bus.Publish(evento);
+  //   }
+  //   catch (Exception ex)
+  //   {
+  //     throw new Exception("Erro ao publicar o evento.", ex);
+  //   }
+  // }
 }
